@@ -1,8 +1,11 @@
 # Caliber
 
-**The benchmark for autonomous hard-science research agents** — a small, curated set of
+**A benchmark series for autonomous hard-science research agents** — small, curated sets of
 brutal **chemistry, physics, and materials** commissions that today's best agents can't yet
 ace. Few tasks. Each one hard.
+
+**Caliber-1** is the first suite in the series: the first rigorously-built benchmark for this
+domain. Later suites are added over time, as the frontier advances and coverage warrants.
 
 [![CI](https://github.com/fl-sean03/caliber/actions/workflows/ci.yml/badge.svg)](https://github.com/fl-sean03/caliber/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -96,6 +99,15 @@ tasks are demoted to development evidence, not the release. See
 
 The official leaderboard opens when Caliber-1 freezes → [benchmark/LEADERBOARD.md](benchmark/LEADERBOARD.md).
 
+## 🧭 The Caliber Series
+
+Caliber is a **series**, not a single frozen test. **Caliber-1** is the first suite. New
+suites (Caliber-2, …) are added deliberately over time — when a suite is saturated, when a new
+capability class appears, or when coverage of the hard-science space warrants it — each
+rigorously curated to the same bar. Every suite is versioned and frozen for comparability;
+older suites stay runnable so results remain meaningful across the series. This is what keeps
+Caliber at the frontier: the *series* evolves faster than models close it.
+
 ## 🗺️ Repo map
 
 ```
@@ -155,7 +167,7 @@ Task proposals, harnesses, and submissions: [CONTRIBUTING.md](CONTRIBUTING.md) �
 ```bibtex
 @software{florez_caliber_2026,
   author  = {Florez, Sean},
-  title   = {Caliber: the benchmark for autonomous hard-science research agents},
+  title   = {Caliber: a benchmark series for autonomous hard-science research agents},
   year    = {2026},
   url     = {https://github.com/fl-sean03/caliber},
   license = {MIT}

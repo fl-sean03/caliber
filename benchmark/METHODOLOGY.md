@@ -1,7 +1,8 @@
 # Caliber — methodology
 
-Caliber is the benchmark for **autonomous hard-science research agents** — chemistry,
-physics, and materials (no biology). Given a hard research commission and a compute
+Caliber is a **benchmark series** for **autonomous hard-science research agents** —
+chemistry, physics, and materials (no biology). **Caliber-1** is the first suite; later suites
+are added over time (see *The Caliber Series* below). Given a hard research commission and a compute
 environment, does the agent choose a sound method, run the real calculation, verify its own
 numbers, and report them honestly — reliably and efficiently?
 
@@ -114,6 +115,16 @@ session-holder; other vendors via their native runners), recorded in a
 `harness:{name,version,config_hash}` provenance field — the measurement path adds no
 custom orchestration. See `harnesses/native-claude/RUNNER.md`. Full run traces (reasoning, tool calls,
 per-turn cost) and a PROV-typed provenance graph are captured for every run.
+
+## The Caliber Series
+
+Caliber evolves as a *series* of frozen, versioned suites rather than one mutable test.
+**Caliber-1** is the first. A new suite is authored when triggered — a suite is saturated by
+the frontier, a new capability class appears (e.g. multi-day autonomy), or hard-science
+coverage warrants expansion — not on a fixed calendar. Comparability across the series is held
+by freezing each suite, carrying a small overlap "bridge set" between consecutive suites, and
+anchoring difficulty to a constant human-expert baseline. Saturated suites are retired to
+public examples, never silently left to drift.
 
 ## Status
 
