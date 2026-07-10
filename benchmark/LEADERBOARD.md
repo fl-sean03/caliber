@@ -2,6 +2,8 @@
 
 *No entries yet.*
 
+For **single-rep reference results** on the saturated batch-1 generation (Claude Fable 5), see [RESULTS.md](RESULTS.md). Those are not ranked leaderboard entries.
+
 Leaderboard entries are published only for **frozen generations**, scored on the full
 three-axis profile — correctness gate, reliability (pass^k), and cost per correct
 solution — never single-rep pass rates. Each entry must include the harness provenance
