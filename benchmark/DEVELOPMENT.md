@@ -1,13 +1,19 @@
-# Results
+# Development & calibration
 
-> **Scope.** These are **single-rep reference results** on `caliber-2026.1-batch1`, the
-> frontier-saturated **regression-floor** generation. They are *not* the official
-> leaderboard — official entries require a frozen generation scored on the full pass^k +
-> cost profile (first: `caliber-2026.2`; see [LEADERBOARD.md](LEADERBOARD.md)). Reported
-> here to show the instrument working end-to-end and to document the saturation finding
-> that motivates batch-2.
+> **Scope.** This is the **development/calibration set** — 17 tasks run to prove the
+> grading instrument end-to-end and to *find the difficulty bar*. A frontier model
+> **saturated** it. That is the finding that set Caliber-1's release gate: these tasks are
+> too easy to be the release, so Caliber-1 is being authored considerably harder. This page
+> is development evidence, **not** the Caliber-1 suite and **not** a leaderboard.
 
-## Headline
+## Why this page exists
+
+We ran a 17-task pilot to (a) verify the whole pipeline — run → oracle-graded gate → judge →
+score — works on real DFT/MD, and (b) discover where the frontier actually is. Both
+succeeded. The pipeline works; the frontier is **above** this pilot. Caliber-1 authoring
+targets ~15–40% frontier gate-pass (see [METHODOLOGY.md](METHODOLOGY.md#release-gate)).
+
+## Pilot result (the saturation finding)
 
 **Claude Fable 5** clears the current slate on correctness: **8/8 graded frontier
 commissions PASS**, and all 8 underspecified-hard tasks completed with physically sound
@@ -68,12 +74,13 @@ reporting keys by design, so answers can't leak through key names).
 ## What this tells us
 
 - The **correctness gate is saturated** at the frontier — the expected 12–18-month fate of
-  any static, objectively-graded slate. It stays as a regression floor.
+  any static, objectively-graded slate. The pilot is retired to development evidence + examples.
 - The **live signal is cost and reliability**: within-task cost varied >10× and the harness
   itself was the dominant cost driver until it was rebuilt. That is what the three-axis
   score and the native-harness discipline exist to capture.
-- **`caliber-2026.2`** (batch-2) is the first *ranked* generation: harder H4–H6+ families,
-  oracle-escrow grading, and a held-out verification slate, run k≥3 for pass^k.
+- **Caliber-1** (in authoring) is the real release: ~30 harder commissions (10-task brutal
+  core + 20 for breadth) across chemistry/physics/materials, oracle-escrow graded, run k≥3
+  for pass^k, screened to launch unsaturated.
 
-*Model: Claude Fable 5. Generation: `caliber-2026.1-batch1`. Grader: mechanical anchors ⊕
+*Model: Claude Fable 5. Generation: the calibration pilot. Grader: mechanical anchors ⊕
 frozen GPT-5.5 judge. Reproduce: `python benchmark/suite/native_sweep.py`.*

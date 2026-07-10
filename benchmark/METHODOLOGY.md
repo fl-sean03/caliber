@@ -1,9 +1,14 @@
 # Caliber — methodology
 
-Caliber is a benchmark for **autonomous computational-materials-science agents**: given a
-research commission and a compute environment, does the agent choose a sound method, run
-the real calculation, verify its own numbers, and report them honestly — reliably and
-efficiently. Public methodology, private answers.
+Caliber is the benchmark for **autonomous hard-science research agents** — chemistry,
+physics, and materials (no biology). Given a hard research commission and a compute
+environment, does the agent choose a sound method, run the real calculation, verify its own
+numbers, and report them honestly — reliably and efficiently?
+
+Caliber-1 is deliberately **lean and brutal**: ~30 commissions (a hard **core of 10** plus
+**20 for breadth**), each an expensive real research run, so a model can be measured with a
+handful of agent runs rather than a fleet of a hundred. It is built to **launch
+unsaturated**. Public methodology, private answers.
 
 ## What is measured — three axes
 
@@ -56,8 +61,27 @@ saturating. The scale is **coupled-stage count** (secondarily, required referenc
 | **H6+** frontier | end-to-end paper reproduction / bounded discovery; oracle-escrowed answer; near-0% expected pass | reproduce a 2026 paper's key result from its methods |
 
 The headline metric is the **stage-count at which pass-rate crosses 50%** — a scale that
-moves up as models improve, never a ceiling they saturate. Each generation raises the
-ceiling by adding stages.
+moves up as models improve, never a ceiling they saturate.
+
+**Structure of Caliber-1.** ~30 commissions on a single hard tier, tagged by **domain**
+(chemistry · physics · materials, roughly balanced) and horizon:
+- **Core (10)** — the brutal headline, horizon **H5–H7** (long campaigns → bounded
+  discovery). Authored and iterated first.
+- **Breadth (20)** — comprehensive coverage of hard-science sub-areas, horizon **H4–H6**.
+
+There are no easy "warm-up" tasks in the release; saturated pilot tasks live in `examples/`.
+
+## Release gate
+
+Caliber-1 does not release until it is **brutal but cracking**. The gate, measured by
+screening every candidate task against a frontier panel (GPT-5.6, Fable 5, Grok 4.5) at
+**maximum effort**:
+- the **best** model lands **~15–40%** on the correctness gate across the suite,
+- there is **clear separation between models** (the suite discriminates the frontier), and
+- **pass^k is well below 1** (no model is reliably perfect).
+
+Candidate tasks a frontier model aces at max effort are discarded. This is the FrontierMath
+funnel — launch below the frontier, keeping multi-year headroom — narrowed to hard science.
 
 ## Contamination & gaming defenses
 
@@ -70,11 +94,10 @@ ceiling by adding stages.
   generation, with automated construct-validity checks on every instance.
 - **Semi-annual rotation** with a permanent private holdout and disclosed access
   governance. Canary tokens are hygiene, not a primary defense.
-- **Held-out generation** — each published generation is paired with a never-released
-  variant slate in the private store, used for independent verification. Because the
-  agent capability layer and the benchmark share this monorepo, this held-out slate is
-  what keeps results honest: public tasks can be tuned against, the held-out slate cannot.
-  Our own agent is scored through the same public submission path as any entrant.
+- **Held-out set** — the released suite is paired with a never-published held-out slate in
+  the private store for independent verification and overfitting monitoring. Public tasks can
+  be tuned against; the held-out set cannot. Our own agent is scored through the same public
+  submission path as any entrant.
 - Sealing and rotation defend against *contamination*; the horizon axis is what defends
   against *capability-driven saturation* — both are required.
 
@@ -94,7 +117,8 @@ per-turn cost) and a PROV-typed provenance graph are captured for every run.
 
 ## Status
 
-Generation batch-1 (the current sealed slate) is saturated on correctness at the frontier
-and serves as the regression floor. Batch-2 (H4–H6 families, oracle-escrow, procedural
-instantiation) is in design. No leaderboard numbers are published until a generation is
-frozen with pass^k + cost.
+**Caliber-1 is in active development.** A 17-task calibration pilot verified the grading
+pipeline end-to-end and was saturated by a frontier model — the finding that set the release
+gate above (see [DEVELOPMENT.md](DEVELOPMENT.md)). The release suite (~30 commissions, core
+10 first) is being authored and screened against the frontier panel. No leaderboard numbers
+publish until Caliber-1 freezes with pass^k + cost.

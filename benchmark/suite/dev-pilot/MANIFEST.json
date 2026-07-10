@@ -259,6 +259,6 @@
    ]
   }
  },
- "generation_id": "caliber-2026.1-batch1",
- "status": "regression-floor (frontier-saturated on correctness; retained as baseline)"
+ "generation_id": "caliber-dev-pilot",
+ "status": "development/calibration pilot (frontier-saturated) \u2014 NOT the Caliber-1 release; see ../../DEVELOPMENT.md"
 }

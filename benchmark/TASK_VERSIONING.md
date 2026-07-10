@@ -10,9 +10,9 @@ Each task carries `version: "N-X"` in its manifest entry:
   (prompt wording, reporting-key rename with a shim).
 
 ## Named generations
-A generation is a frozen slate published together: `caliber-YYYY.N` (e.g. `caliber-2026.1`),
+A release is a frozen suite published together (`Caliber-1`, and only if it ever saturates, `Caliber-2`),
 tagged in git. Each generation:
-- lives under `benchmark/suite/<generation>/MANIFEST.json` (public prompts + keys, no answers),
+- lives under `benchmark/suite/<release>/MANIFEST.json` (public prompts + keys, no answers),
 - has its sealed answers/tolerances under the matching path in the private store,
 - SHOULD carry a **held-out variant** (never-published tasks) in the private store for
   independent verification — the defense against tuning against public tasks.
