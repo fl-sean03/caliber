@@ -14,4 +14,4 @@ reliably, and efficiently.
 
 Public methodology, private answers: sealed keys, tolerances, and oracles live off-repo in
 `caliber-private` and are injected only at grade time. No leaderboard numbers are published
-until a generation is frozen with pass^k + cost.
+until Caliber-1 is frozen with pass^k + cost.

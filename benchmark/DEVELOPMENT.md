@@ -18,7 +18,7 @@ targets ~15–40% frontier gate-pass (see [METHODOLOGY.md](METHODOLOGY.md#releas
 **Claude Fable 5** clears the current slate on correctness: **8/8 graded frontier
 commissions PASS**, and all 8 underspecified-hard tasks completed with physically sound
 results. Correctness is **saturated** at the frontier — which is exactly why the next
-generation moves difficulty onto a coupled-stage *horizon* (see
+Caliber-1 moves difficulty onto a coupled-stage *horizon* (see
 [METHODOLOGY.md](METHODOLOGY.md#difficulty--the-horizon-d2)).
 
 ## Band C — frontier research commissions (graded)
@@ -82,5 +82,5 @@ reporting keys by design, so answers can't leak through key names).
   core + 20 for breadth) across chemistry/physics/materials, oracle-escrow graded, run k≥3
   for pass^k, screened to launch unsaturated.
 
-*Model: Claude Fable 5. Generation: the calibration pilot. Grader: mechanical anchors ⊕
+*Model: Claude Fable 5. Set: the calibration pilot. Grader: mechanical anchors ⊕
 frozen GPT-5.5 judge. Reproduce: `python benchmark/suite/native_sweep.py`.*

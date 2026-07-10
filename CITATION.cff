@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
-title: "Caliber: autonomous computational materials science agents and the benchmark that measures them"
+title: "Caliber-1: a benchmark for autonomous hard-science research agents"
 abstract: >-
   A portable capability layer that turns a coding agent into an autonomous
   computational-materials researcher, together with Caliber, a benchmark that

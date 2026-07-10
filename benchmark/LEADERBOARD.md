@@ -4,7 +4,7 @@
 
 For the development/calibration pilot data (Claude Fable 5), see [DEVELOPMENT.md](DEVELOPMENT.md). That is not a ranked leaderboard entry.
 
-Leaderboard entries are published only for **frozen generations**, scored on the full
+Leaderboard entries are published only for the **frozen Caliber-1 suite**, scored on the full
 three-axis profile — correctness gate, reliability (pass^k), and cost per correct
 solution — never single-rep pass rates. Each entry must include the harness provenance
 (`harness:{name,version,config_hash}`) and full run trajectories, and is reviewed before

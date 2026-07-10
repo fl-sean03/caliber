@@ -12,7 +12,7 @@ Initial public release of **Caliber** — one project, two halves:
   that turn a coding agent into an autonomous computational-materials researcher.
 - **Benchmark** (`benchmark/`): three-axis scoring (correctness gate × pass^k ×
   cost-per-correct-solution) against sealed oracle-escrow references; per-model native
-  harnesses with run provenance; versioned task generations (2026.1-batch1 sealed as the
+  harnesses with run provenance; a versioned task suite (the calibration pilot sealed as the
   regression floor); public methodology, private answers.
 
 Caliber continues the work previously published as the **Agentic Science Worker**

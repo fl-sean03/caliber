@@ -1,5 +1,4 @@
 {
- "generation": "batch-1",
  "note": "public manifests \u2014 prompts + reporting keys only; sealed answers/tolerances/canaries live in caliber-private",
  "bands": {
   "bandB": {
@@ -259,6 +258,7 @@
    ]
   }
  },
- "generation_id": "caliber-dev-pilot",
- "status": "development/calibration pilot (frontier-saturated) \u2014 NOT the Caliber-1 release; see ../../DEVELOPMENT.md"
+ "status": "development/calibration pilot (frontier-saturated) \u2014 NOT the Caliber-1 release; see ../../DEVELOPMENT.md",
+ "suite": "batch-1",
+ "suite_id": "caliber-dev-pilot"
 }
