@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Caliber: autonomous computational materials science agents and the benchmark that measures them"
+abstract: >-
+  A portable capability layer that turns a coding agent into an autonomous
+  computational-materials researcher, together with Caliber, a benchmark that
+  grades such agents on three axes (correctness gate, reliability pass^k, and
+  cost per correct solution) against sealed high-compute reference answers. The
+  agent plans methodology, sources parameters, runs and verifies DFT/MD/ML-
+  potential calculations, and executes long-horizon campaigns durably.
+type: software
+authors:
+  - family-names: Florez
+    given-names: Sean
+version: 0.3.0
+date-released: "2026-07-10"
+license: MIT
+repository-code: "https://github.com/fl-sean03/caliber"
+keywords:
+  - agentic-ai
+  - computational-materials-science
+  - molecular-dynamics
+  - density-functional-theory
+  - autonomous-research

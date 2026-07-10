@@ -1,0 +1,146 @@
+# =============================================================================
+# Agentic Science Worker - .gitignore
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Internal/private documentation (not for public repo)
+# -----------------------------------------------------------------------------
+internal/
+
+# -----------------------------------------------------------------------------
+# Generated benchmark outputs (large, regenerable)
+# -----------------------------------------------------------------------------
+workspaces/benchmarks/
+benchmarks/results/runs/
+
+# Keep example workspaces and results
+!workspaces/examples/
+!benchmarks/results/examples/
+!benchmarks/results/BENCHMARK_RESULTS.md
+
+# -----------------------------------------------------------------------------
+# Python
+# -----------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+.coverage
+htmlcov/
+
+# -----------------------------------------------------------------------------
+# Virtual environments
+# -----------------------------------------------------------------------------
+venv/
+ENV/
+env/
+.venv/
+
+# -----------------------------------------------------------------------------
+# IDE and editors
+# -----------------------------------------------------------------------------
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+
+# -----------------------------------------------------------------------------
+# Configuration with secrets (use .example templates)
+# -----------------------------------------------------------------------------
+.claude/settings.json
+.mcp.json
+config.yaml
+.env
+
+# -----------------------------------------------------------------------------
+# OS files
+# -----------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+
+# -----------------------------------------------------------------------------
+# Temporary files
+# -----------------------------------------------------------------------------
+*.tmp
+*.temp
+*.log
+input_tmp.in
+CRASH
+
+# -----------------------------------------------------------------------------
+# Simulation outputs (if accidentally created in root)
+# -----------------------------------------------------------------------------
+*.lammpstrj
+*.dump
+*.restart
+log.lammps
+*.xyz
+
+# -----------------------------------------------------------------------------
+# Large data files
+# -----------------------------------------------------------------------------
+*.hdf5
+*.h5
+*.nc
+*.npy
+*.npz
+
+# -----------------------------------------------------------------------------
+# ML model files (download on demand)
+# -----------------------------------------------------------------------------
+*.model
+*.pt
+*.pth
+*.ckpt
+
+# -----------------------------------------------------------------------------
+# Potential files (download fresh)
+# -----------------------------------------------------------------------------
+*.eam
+*.eam.alloy
+*.eam.fs
+*.tersoff
+*.UPF
+workspaces/phase0-tests/
+workspaces/projects/
+
+# Hide from public repo (owner rule, Jan 2026). rebase-2026-07-02 adjusted the
+# original `docs/` rule ONLY to let the rebase record set be tracked; nested
+# docs/ dirs (e.g. benchmarks/docs leftovers) stay ignored exactly as before.
+# Whether the rebase records stay tracked before any push is owner decision B-6.
+**/docs/
+!/docs/
+/docs/*
+!/docs/rebase/
+!/docs/PATH_MIGRATION_2026-06-13.md
+workspaces/copper_calc/
+
+# -----------------------------------------------------------------------------
+# Run artifacts / scratch (never commit)
+# -----------------------------------------------------------------------------
+*.pid
+pw.out
+*.tmp
+CRASH
+core.*

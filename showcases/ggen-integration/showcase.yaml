@@ -1,0 +1,47 @@
+# ggen Integration Showcase
+# Demonstrates agent using ggen for structure generation
+
+name: "ggen Structure Generation Integration"
+version: "1.0"
+created: "2026-01-23"
+
+organization:
+  name: "Ouro Foundation"
+  repo: "https://github.com/ourofoundation/ggen"
+  website: "https://ouro.foundation"
+
+description: |
+  This showcase demonstrates how the Agentic Science Worker can use ggen
+  for crystal structure generation and stability assessment.
+
+  ggen provides:
+  - Structure generation from chemical formulas (PyXtal + space groups)
+  - ML-accelerated relaxation (ORB potentials)
+  - Thermodynamic stability assessment (convex hull)
+  - Dynamical stability checking (phonons)
+
+  The agent uses ggen when it needs candidate structures, then continues
+  with its own simulation and analysis capabilities.
+
+  Positioning: Agent as a USER of ggen, not a replacement.
+
+category: "computational"
+
+requirements:
+  python_packages:
+    - ggen  # pip install ggen
+  environment: []
+  hardware:
+    - GPU recommended for fast relaxation
+
+tags:
+  - materials
+  - structure-generation
+  - crystal-discovery
+  - thermodynamic-stability
+
+references:
+  - title: "ggen GitHub Repository"
+    url: "https://github.com/ourofoundation/ggen"
+  - title: "Ouro Foundation"
+    url: "https://ouro.foundation"

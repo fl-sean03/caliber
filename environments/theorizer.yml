@@ -1,0 +1,34 @@
+# ASTA Theorizer Environment
+# For literature-driven theory synthesis
+#
+# IMPORTANT: Requires Python 3.12 specifically (not 3.13)
+# IMPORTANT: Also requires cloning and installing asta-theorizer from source
+#
+# Install with:
+#   conda env create -f environments/theorizer.yml
+#   conda activate theorizer
+#   git clone https://github.com/allenai/asta-theorizer.git
+#   cd asta-theorizer && pip install -e .
+#   cd .. && git clone https://github.com/allenai/asta-paperfinder.git
+#   cd asta-paperfinder && pip install -e .
+
+name: theorizer
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+    # Environment utilities
+    - python-dotenv
+
+    # LLM clients
+    - openai
+    - anthropic
+    - mistralai
+
+    # Literature search
+    - semanticscholar
+
+    # Note: asta-theorizer and asta-paperfinder must be installed from source
+    # See installation instructions above

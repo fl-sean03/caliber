@@ -1,0 +1,264 @@
+{
+ "generation": "batch-1",
+ "note": "public manifests \u2014 prompts + reporting keys only; sealed answers/tolerances/canaries live in caliber-private",
+ "bands": {
+  "bandB": {
+   "count": 8,
+   "tasks": [
+    {
+     "id": "BENCH-B-001",
+     "cluster": "alloy-thermo",
+     "capability_target": [
+      "method-selection",
+      "error-detection",
+      "uncertainty"
+     ],
+     "reporting_keys": null,
+     "prompt": "Ag-Cu is a classic binary alloy system. Determine whether silver and copper MIX or PHASE-SEPARATE when forced into a random solid solution, and quantify the enthalpy of mixing of a random Ag0.5Cu0.5 solid solution relative to the pure FCC elements. Choose your own method and justify it. Report a value with an uncertainty, state the SIGN explicitly, and note any known limitation of your chosen method for THIS system. Work in your workspace.",
+     "version": "1-0"
+    },
+    {
+     "id": "BENCH-B-002",
+     "cluster": "lj-transport",
+     "capability_target": [
+      "method-selection",
+      "provenance",
+      "uncertainty"
+     ],
+     "reporting_keys": null,
+     "prompt": "Compute the self-diffusion coefficient of LIQUID ARGON near its triple point (about T=85 K, density ~1.4 g/cm^3) using an appropriate classical model. Choose the interatomic potential and its parameters, SOURCE them explicitly, and report D with a statistical uncertainty. Compare your result to a published value and comment on the agreement.",
+     "version": "1-0"
+    },
+    {
+     "id": "BENCH-B-003",
+     "cluster": "metal-cohesion",
+     "capability_target": [
+      "method-selection",
+      "uncertainty",
+      "provenance"
+     ],
+     "reporting_keys": null,
+     "prompt": "Determine the cohesive energy per atom of face-centered-cubic COPPER. Choose a method appropriate to the accuracy you can justify, report the value with the method's expected error, and cite the experimental reference you compare against.",
+     "version": "1-0"
+    },
+    {
+     "id": "BENCH-B-004",
+     "cluster": "point-defect",
+     "capability_target": [
+      "method-selection",
+      "convergence",
+      "uncertainty"
+     ],
+     "reporting_keys": null,
+     "prompt": "Compute the monovacancy formation energy in FCC ALUMINIUM. Justify your supercell size and method choice, report with an uncertainty, and compare to an experimental value.",
+     "version": "1-0"
+    },
+    {
+     "id": "BENCH-B-005",
+     "cluster": "semiconductor-eos",
+     "capability_target": [
+      "method-selection",
+      "systematic-error-awareness",
+      "provenance"
+     ],
+     "reporting_keys": null,
+     "prompt": "For diamond-cubic SILICON, determine the equilibrium lattice constant and the bulk modulus from first principles (or an equivalent-accuracy model). Report both with the method's SYSTEMATIC error noted (e.g. the exchange-correlation tendency to over- or under-bind) and compare to experiment.",
+     "version": "1-0"
+    },
+    {
+     "id": "BENCH-B-006",
+     "cluster": "surface",
+     "capability_target": [
+      "method-selection",
+      "convergence",
+      "uncertainty"
+     ],
+     "reporting_keys": null,
+     "prompt": "Estimate the (111) surface energy of FCC NICKEL. Justify your slab thickness and vacuum convergence, and report with an uncertainty against a literature value.",
+     "version": "1-0"
+    },
+    {
+     "id": "BENCH-B-007",
+     "cluster": "mlip-accuracy",
+     "capability_target": [
+      "method-selection",
+      "self-validation",
+      "decision-under-uncertainty"
+     ],
+     "reporting_keys": null,
+     "prompt": "You are given NO reference data. Quantify how accurately the MACE-MP-0 universal potential reproduces the equilibrium lattice constant of FCC GOLD, then make and JUSTIFY a go/no-go decision on whether it is trustworthy for a subsequent thermal-expansion study. Report the lattice constant, its error versus experiment (which you must source yourself), and your judgement.",
+     "version": "1-0"
+    },
+    {
+     "id": "BENCH-B-008",
+     "cluster": "robustness",
+     "capability_target": [
+      "error-detection",
+      "honesty",
+      "method-selection"
+     ],
+     "reporting_keys": null,
+     "prompt": "Compute the equilibrium lattice constant of BODY-CENTERED-CUBIC copper and compare it to the experimental value.",
+     "version": "1-0"
+    }
+   ]
+  },
+  "bandC": {
+   "count": 9,
+   "tasks": [
+    {
+     "id": "BENCH-C-001",
+     "cluster": "elastic-response",
+     "capability_target": [
+      "method-selection",
+      "multi-observable-consistency",
+      "uncertainty",
+      "provenance"
+     ],
+     "reporting_keys": [
+      "C11_GPa",
+      "C12_GPa",
+      "C44_GPa",
+      "A_zener",
+      "G_hill_GPa"
+     ],
+     "prompt": "Characterize the low-temperature mechanical response of single-crystal copper from your own atomistic calculations: determine the full cubic elastic-constant set (C11, C12, C44), the Zener anisotropy ratio, and a polycrystalline (Hill-average) shear modulus. Choose and justify your method; verify your numbers are internally consistent and trustworthy before reporting; compare against experimental values with citations; report uncertainties. Your final report must include a machine-readable reported_values map with exactly these keys: C11_GPa, C12_GPa, C44_GPa, A_zener, G_hill_GPa.",
+     "version": "1-0"
+    },
+    {
+     "id": "BENCH-C-002",
+     "cluster": "phase-stability",
+     "capability_target": [
+      "method-selection",
+      "workflow-composition",
+      "systematic-error-awareness",
+      "uncertainty"
+     ],
+     "reporting_keys": [
+      "pt_GPa",
+      "dE_betatin_meV_atom",
+      "V0_diamond_A3"
+     ],
+     "prompt": "Silicon transforms under hydrostatic compression from the diamond structure to the metallic beta-tin structure. From your own atomistic calculations, determine: (1) the equilibrium (thermodynamic) transition pressure; (2) the zero-pressure energy difference per atom between beta-tin and diamond silicon; and (3) the equilibrium volume per atom of diamond silicon. Compare your transition pressure with the experimentally observed one, explain any systematic deviation, and report uncertainties. Your final report must include a machine-readable reported_values map with exactly these keys: pt_GPa, dE_betatin_meV_atom, V0_diamond_A3.",
+     "version": "1-0"
+    },
+    {
+     "id": "BENCH-C-003",
+     "cluster": "point-defect",
+     "capability_target": [
+      "method-selection",
+      "consistency-at-scale",
+      "decision-under-uncertainty",
+      "provenance"
+     ],
+     "reporting_keys": [
+      "Z_max",
+      "Ef_max_eV",
+      "Ef_Cu_eV",
+      "Ef_Al_eV"
+     ],
+     "prompt": "Across the six FCC metals {Al, Ni, Cu, Ag, Au, Pt}, determine which element has the HIGHEST monovacancy formation energy. Use one consistent, justified computational protocol across all six; report the formation energy of every element with an uncertainty; identify the maximum; and discuss agreement with available experimental data. Your final report must include a machine-readable reported_values map with exactly these keys: Z_max (atomic number of the element with the highest formation energy), Ef_max_eV, Ef_Cu_eV, Ef_Al_eV.",
+     "version": "1-0"
+    },
+    {
+     "id": "BENCH-C-004",
+     "cluster": "surface-thermo",
+     "capability_target": [
+      "method-selection",
+      "systematic-error-awareness",
+      "unit-discipline",
+      "uncertainty"
+     ],
+     "reporting_keys": [
+      "gamma111_J_m2",
+      "ratio_100_111",
+      "ratio_110_111"
+     ],
+     "prompt": "Determine the equilibrium crystal (Wulff) shape of a gold nanoparticle in vacuum from your own calculations: compute the surface energies of the (111), (100), and (110) facets, give the anisotropy ratios gamma(100)/gamma(111) and gamma(110)/gamma(111), and state which facets appear in the equilibrium shape and why. Compare your absolute surface energies against experimental estimates and explain any systematic discrepancy. Report uncertainties. Your final report must include a machine-readable reported_values map with exactly these keys: gamma111_J_m2, ratio_100_111, ratio_110_111.",
+     "version": "1-0"
+    },
+    {
+     "id": "BENCH-C-005",
+     "cluster": "kinetics",
+     "capability_target": [
+      "workflow-composition",
+      "method-selection",
+      "mechanistic-decomposition",
+      "uncertainty"
+     ],
+     "reporting_keys": [
+      "Ef_eV",
+      "Em_eV",
+      "Q_eV"
+     ],
+     "prompt": "Determine the activation energy for vacancy-mediated self-diffusion in FCC aluminum from atomistic calculations, decomposed into its physical contributions, and compare with the activation energy measured in tracer-diffusion experiments. Justify your methodology and report uncertainties. Your final report must include a machine-readable reported_values map with exactly these keys: Ef_eV (vacancy formation energy), Em_eV (vacancy migration barrier), Q_eV (total activation energy).",
+     "version": "1-0"
+    },
+    {
+     "id": "BENCH-C-006",
+     "cluster": "md-thermo",
+     "capability_target": [
+      "method-selection",
+      "long-horizon-discipline",
+      "cost-appropriateness",
+      "systematic-error-awareness"
+     ],
+     "reporting_keys": [
+      "Tm_K",
+      "Tm_uncertainty_K"
+     ],
+     "prompt": "Determine the melting temperature of aluminum at ambient pressure from your own molecular-dynamics simulations, using an interatomic potential or machine-learning force field of your choice. Your estimate must come from simulation (not literature transcription); justify the methodology, quantify the uncertainty, and compare with the experimental melting point. This is expected to be feasible within a few GPU-hours on the local machine. Your final report must include a machine-readable reported_values map with exactly these keys: Tm_K, Tm_uncertainty_K.",
+     "version": "1-0"
+    },
+    {
+     "id": "BENCH-C-007",
+     "cluster": "planar-defect",
+     "capability_target": [
+      "model-inadequacy-detection",
+      "method-selection",
+      "unit-discipline",
+      "provenance"
+     ],
+     "reporting_keys": [
+      "gamma_isf_mJ_m2"
+     ],
+     "prompt": "Determine the intrinsic stacking-fault energy of FCC copper from atomistic calculations. Validate that your chosen interaction model is adequate for this quantity before trusting it. Report the value in mJ/m^2 with an uncertainty and compare with experimental estimates. Your final report must include a machine-readable reported_values map with exactly this key: gamma_isf_mJ_m2.",
+     "version": "1-0"
+    },
+    {
+     "id": "BENCH-C-008",
+     "cluster": "robustness",
+     "capability_target": [
+      "error-detection",
+      "input-provenance",
+      "honesty"
+     ],
+     "reporting_keys": [
+      "a_used_A",
+      "Ef_eV"
+     ],
+     "prompt": "As part of a thermal-defects study we need the monovacancy formation energy of aluminum. Use the experimental lattice constant of aluminum, a = 3.52 Angstrom, for the bulk reference, and compute the vacancy formation energy with a justified method; compare with positron-annihilation measurements. Your final report must include a machine-readable reported_values map with exactly these keys: a_used_A (the lattice constant your production calculation actually used), Ef_eV.",
+     "version": "1-0"
+    },
+    {
+     "id": "BENCH-C-009",
+     "cluster": "hydrogen-metals",
+     "capability_target": [
+      "reference-state-rigor",
+      "method-selection",
+      "systematic-error-awareness",
+      "decision-under-uncertainty"
+     ],
+     "reporting_keys": [
+      "dH_Pd_eV",
+      "dH_Fe_eV"
+     ],
+     "prompt": "For hydrogen-storage screening we need the dilute heat of solution of atomic hydrogen, relative to 1/2 H2 gas, in FCC palladium and in BCC iron: sign and magnitude for both, at the single-interstitial dilute limit, from your own calculations. Identify which metal absorbs hydrogen exothermically. Pay particular attention to the reliability of your hydrogen reference state and of your treatment of iron. Report uncertainties. Your final report must include a machine-readable reported_values map with exactly these keys: dH_Pd_eV, dH_Fe_eV.",
+     "version": "1-0"
+    }
+   ]
+  }
+ },
+ "generation_id": "caliber-2026.1-batch1",
+ "status": "regression-floor (frontier-saturated on correctness; retained as baseline)"
+}

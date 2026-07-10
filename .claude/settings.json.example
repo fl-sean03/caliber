@@ -1,0 +1,71 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(python3:*)",
+      "Bash(conda:*)",
+      "Bash(./scripts/*)",
+      "Bash(nvidia-smi)",
+      "Bash(source:*)",
+      "Bash(mpirun:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(grep:*)",
+      "Bash(cat:*)",
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
+      "Bash(cd:*)",
+      "Bash(ssh:*)",
+      "Bash(scp:*)",
+      "Bash(rsync:*)",
+      "Bash(sbatch:*)",
+      "Bash(squeue:*)",
+      "Bash(scancel:*)",
+      "Write(./workspaces/**)",
+      "Write(./scripts/**)",
+      "Write(./benchmarks/**)",
+      "Write(/tmp/**)",
+      "Edit(./workspaces/**)",
+      "Edit(./scripts/**)",
+      "Edit(./benchmarks/**)"
+    ],
+    "deny": [
+      "Bash(rm -rf /)",
+      "Bash(dd if=*)"
+    ]
+  },
+  "env": {
+    "LMP": "${LAMMPS_PATH:-/usr/local/bin/lmp}",
+    "QE_CPU": "${QE_CPU_PATH:-/usr/local/bin}",
+    "QE_GPU": "${QE_GPU_PATH:-/usr/local/bin}",
+    "MP_API_KEY": "${MP_API_KEY}",
+    "CURC_USER": "${HPC_USER}",
+    "CURC_HOST": "${HPC_HOST:-login.rc.colorado.edu}"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/validate_simulation.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/format_output.py\"",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+# LAMMPS NVT Equilibration Template
+# Adjust parameters as needed for your system
+
+# === INITIALIZATION ===
+units           real
+atom_style      full
+boundary        p p p
+
+# === STRUCTURE ===
+read_data       structure.data
+# Or: read_restart minimized.restart
+
+# === FORCE FIELD ===
+# Modify pair_style and coefficients for your system
+pair_style      lj/cut 12.0
+pair_modify     mix arithmetic
+
+# Example pair coefficients (REPLACE WITH YOUR PARAMETERS)
+# pair_coeff      type1 type2 epsilon sigma
+
+# === SETTINGS ===
+neighbor        2.0 bin
+neigh_modify    delay 0 every 1 check yes
+
+# === VELOCITIES ===
+# Create initial velocities at target temperature
+velocity        all create 300.0 12345 mom yes rot yes
+
+# === ENSEMBLE ===
+# NVT at 300 K with 100 fs damping
+fix             1 all nvt temp 300.0 300.0 100.0
+
+# === TIMESTEP ===
+timestep        1.0  # 1 fs for real units
+
+# === OUTPUT ===
+thermo          1000
+thermo_style    custom step temp pe ke etotal press vol density
+
+# Trajectory output
+dump            1 all custom 10000 trajectory.lammpstrj id type x y z vx vy vz
+
+# === RUN ===
+run             100000  # 100 ps equilibration
+
+# === SAVE STATE ===
+write_restart   equilibrated.restart
+write_data      equilibrated.data

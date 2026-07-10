@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"],
+      "description": "Browser automation for web access, file downloads, and screenshots"
+    },
+    "semantic-scholar": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/semantic-scholar-mcp"],
+      "env": {
+        "SEMANTIC_SCHOLAR_API_KEY": "${SEMANTIC_SCHOLAR_API_KEY}"
+      },
+      "description": "Search and retrieve academic papers from Semantic Scholar"
+    },
+    "filesystem": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "${PROJECT_ROOT}"],
+      "description": "Extended filesystem access for the workspace"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+# Theory Synthesis Showcase
+# Uses ASTA Theorizer for literature-driven hypothesis generation
+
+name: theory-synthesis
+version: "1.0.0"
+status: ready
+validated: 2026-01-31
+
+description: |
+  Demonstrates ASTA Theorizer for generating literature-supported
+  scientific hypotheses and identifying research gaps.
+
+provider:
+  name: Allen AI
+  repo: https://github.com/allenai/asta-theorizer
+  paper: https://arxiv.org/abs/2406.06592
+
+requirements:
+  environment: theorizer
+  python: "3.12"
+  dependencies:
+    - asta-theorizer (from source)
+    - asta-paper-finder (from source)
+  api_keys:
+    - OPENAI_API_KEY (theory generation)
+    - S2_API_KEY (Semantic Scholar paper search)
+    - MISTRAL_API_KEY (PDF OCR conversion)
+
+files:
+  demo: workspace/demo_theorizer.py
+  prompt: PROMPT.md
+  expected: EXPECTED_OUTPUT.md
+
+skills:
+  - theory-synthesis
+
+usage: |
+  # Activate environment
+  conda activate theorizer
+
+  # Run demo (requires API keys)
+  cd workspace
+  python demo_theorizer.py --quick
+
+  # Full demo with more papers
+  python demo_theorizer.py
+
+setup:
+  repositories:
+    theorizer: ~/work/agents/science-agent/asta-theorizer
+    paper_finder: ~/work/agents/science-agent/asta-paper-finder
+  api_keys_file: ~/work/agents/science-agent/asta-theorizer/api_keys.donotcommit.json
+  s2_key_file: ~/work/agents/science-agent/asta-theorizer/s2_key.donotcommit.txt
+  cache_dir: ~/.cache/science-agent/theorizer
+
+notes:
+  - Requires separate Python 3.12 environment (theorizer)
+  - API calls can incur costs - start with --quick mode
+  - PaperFinder uses uv for package management

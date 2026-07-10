@@ -1,0 +1,35 @@
+# LAMMPS Energy Minimization Template
+# Adjust parameters as needed for your system
+
+# === INITIALIZATION ===
+units           real
+atom_style      full
+boundary        p p p
+
+# === STRUCTURE ===
+read_data       structure.data
+
+# === FORCE FIELD ===
+# Modify pair_style and coefficients for your system
+pair_style      lj/cut 12.0
+pair_modify     mix arithmetic
+
+# Example pair coefficients (REPLACE WITH YOUR PARAMETERS)
+# pair_coeff      type1 type2 epsilon sigma
+
+# === SETTINGS ===
+neighbor        2.0 bin
+neigh_modify    delay 0 every 1 check yes
+
+# === OUTPUT ===
+thermo          100
+thermo_style    custom step pe ke etotal press vol
+
+# === MINIMIZATION ===
+# Using conjugate gradient algorithm
+min_style       cg
+minimize        1.0e-6 1.0e-8 10000 100000
+
+# === WRITE MINIMIZED STRUCTURE ===
+write_data      minimized.data
+write_restart   minimized.restart

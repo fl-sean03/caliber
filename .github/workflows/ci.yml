@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  tests:
+    name: Scoring & provenance tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install test deps
+        run: pip install pytest requests
+      - name: Run caliber tests
+        run: python -m pytest benchmark/scoring -q
+
+  hygiene:
+    name: Leak & hygiene scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: No secrets, sealed answers, or machine paths
+        run: |
+          set -e
+          ! git grep -nE "sk-[A-Za-z0-9]{20}|ghp_[A-Za-z0-9]{20}|AKIA[A-Z0-9]{16}" -- . || { echo "::error::API-key-shaped string found"; exit 1; }
+          ! git grep -nE "ASW-CANAR[Y]-[0-9a-f]" -- . || { echo "::error::sealed canary token found — answers must never enter this repo"; exit 1; }
+          ! git grep -nE "/home/sf[0-9]/" -- . ":!.github/workflows" || { echo "::error::machine-specific path found"; exit 1; }
+      - name: Python syntax
+        run: |
+          python -m compileall -q benchmark/ scripts/ || exit 1

@@ -1,0 +1,238 @@
+[
+  {
+    "id": 11,
+    "composition": "Li2Ni(PO4)(SO4)_approx",
+    "hypothesis": "H3_mixed_polyanion",
+    "elements": [
+      "Ni",
+      "P",
+      "S"
+    ],
+    "voltage": 5.1,
+    "e_formation": -2.7320960589817593,
+    "is_novel": true,
+    "novelty_reason": "Mixed polyanion (PO4+SO4) - NOT in MP",
+    "mp_similar": []
+  },
+  {
+    "id": 10,
+    "composition": "Li2Co(PO4)(SO4)_approx",
+    "hypothesis": "H3_mixed_polyanion",
+    "elements": [
+      "Co",
+      "P",
+      "S"
+    ],
+    "voltage": 4.8,
+    "e_formation": -2.9256830556052074,
+    "is_novel": true,
+    "novelty_reason": "Mixed polyanion (PO4+SO4) - NOT in MP",
+    "mp_similar": []
+  },
+  {
+    "id": 104,
+    "composition": "Li(Co0.33Ni0.33V0.34)PO4F_SQS",
+    "hypothesis": "H1_HE_fluorophosphate",
+    "elements": [
+      "Co",
+      "Ni",
+      "V"
+    ],
+    "voltage": 4.8,
+    "e_formation": -2.7611078498885036,
+    "is_novel": true,
+    "novelty_reason": "NOT in Materials Project",
+    "mp_similar": [
+      {
+        "mp_id": "mp-754604",
+        "formula": "BaBePO4F",
+        "e_hull": 0.0
+      },
+      {
+        "mp_id": "mp-556604",
+        "formula": "BaCuPClO4",
+        "e_hull": 0.0053761203124990005
+      },
+      {
+        "mp_id": "mp-25407",
+        "formula": "LiFePO4F",
+        "e_hull": 0.005248857187499001
+      }
+    ]
+  },
+  {
+    "id": 101,
+    "composition": "Li(Mn0.25Co0.25Ni0.25V0.25)PO4F_SQS",
+    "hypothesis": "H1_HE_fluorophosphate",
+    "elements": [
+      "Mn",
+      "Co",
+      "Ni",
+      "V"
+    ],
+    "voltage": 4.7,
+    "e_formation": -2.79262787848711,
+    "is_novel": true,
+    "novelty_reason": "High-entropy (4-component) - NOT in MP",
+    "mp_similar": [
+      {
+        "mp_id": "mp-754604",
+        "formula": "BaBePO4F",
+        "e_hull": 0.0
+      },
+      {
+        "mp_id": "mp-556604",
+        "formula": "BaCuPClO4",
+        "e_hull": 0.0053761203124990005
+      },
+      {
+        "mp_id": "mp-25407",
+        "formula": "LiFePO4F",
+        "e_hull": 0.005248857187499001
+      }
+    ]
+  },
+  {
+    "id": 120,
+    "composition": "Li(Mn0.33Co0.33Ni0.34)PO4_SQS",
+    "hypothesis": "Additional_HE_olivine",
+    "elements": [
+      "Mn",
+      "Co",
+      "Ni"
+    ],
+    "voltage": 4.67,
+    "e_formation": -2.8536785947425023,
+    "is_novel": true,
+    "novelty_reason": "NOT in Materials Project",
+    "mp_similar": [
+      {
+        "mp_id": "mp-1661648",
+        "formula": "LiFePO4",
+        "e_hull": 0.065752056071428
+      },
+      {
+        "mp_id": "mp-772138",
+        "formula": "LiFePO4",
+        "e_hull": 0.05068727714285701
+      },
+      {
+        "mp_id": "mp-1661428",
+        "formula": "LiCoPO4",
+        "e_hull": 0.07880618035712901
+      }
+    ]
+  },
+  {
+    "id": 102,
+    "composition": "Li(Fe0.25Co0.25Ni0.25V0.25)PO4F_SQS",
+    "hypothesis": "H1_HE_fluorophosphate",
+    "elements": [
+      "Fe",
+      "Co",
+      "Ni",
+      "V"
+    ],
+    "voltage": 4.53,
+    "e_formation": -2.7241628542542458,
+    "is_novel": true,
+    "novelty_reason": "High-entropy (4-component) - NOT in MP",
+    "mp_similar": [
+      {
+        "mp_id": "mp-754604",
+        "formula": "BaBePO4F",
+        "e_hull": 0.0
+      },
+      {
+        "mp_id": "mp-556604",
+        "formula": "BaCuPClO4",
+        "e_hull": 0.0053761203124990005
+      },
+      {
+        "mp_id": "mp-25407",
+        "formula": "LiFePO4F",
+        "e_hull": 0.005248857187499001
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "composition": "Li2Cr(PO4)(SO4)_approx",
+    "hypothesis": "H3_mixed_polyanion",
+    "elements": [
+      "Cr",
+      "P",
+      "S"
+    ],
+    "voltage": 4.5,
+    "e_formation": -2.8377979482923235,
+    "is_novel": true,
+    "novelty_reason": "Mixed polyanion (PO4+SO4) - NOT in MP",
+    "mp_similar": []
+  },
+  {
+    "id": 100,
+    "composition": "Li(Fe0.2Mn0.2Co0.2Ni0.2V0.2)PO4F_SQS",
+    "hypothesis": "H1_HE_fluorophosphate",
+    "elements": [
+      "Fe",
+      "Mn",
+      "Co",
+      "Ni",
+      "V"
+    ],
+    "voltage": 4.5,
+    "e_formation": -2.7446442153304815,
+    "is_novel": true,
+    "novelty_reason": "High-entropy (5-component) - NOT in MP",
+    "mp_similar": [
+      {
+        "mp_id": "mp-754604",
+        "formula": "BaBePO4F",
+        "e_hull": 0.0
+      },
+      {
+        "mp_id": "mp-556604",
+        "formula": "BaCuPClO4",
+        "e_hull": 0.0053761203124990005
+      },
+      {
+        "mp_id": "mp-25407",
+        "formula": "LiFePO4F",
+        "e_hull": 0.005248857187499001
+      }
+    ]
+  },
+  {
+    "id": 119,
+    "composition": "Li(Fe0.25Mn0.25Co0.25Ni0.25)PO4_SQS",
+    "hypothesis": "Additional_HE_olivine",
+    "elements": [
+      "Fe",
+      "Mn",
+      "Co",
+      "Ni"
+    ],
+    "voltage": 4.36,
+    "e_formation": -2.795599264757974,
+    "is_novel": true,
+    "novelty_reason": "High-entropy (4-component) - NOT in MP",
+    "mp_similar": [
+      {
+        "mp_id": "mp-1661648",
+        "formula": "LiFePO4",
+        "e_hull": 0.065752056071428
+      },
+      {
+        "mp_id": "mp-772138",
+        "formula": "LiFePO4",
+        "e_hull": 0.05068727714285701
+      },
+      {
+        "mp_id": "mp-1661428",
+        "formula": "LiCoPO4",
+        "e_hull": 0.07880618035712901
+      }
+    ]
+  }
+]

@@ -1,0 +1,32 @@
+# Aider Configuration for Agentic Science Worker
+# Copy this file to project root: cp configs/aider/.aider.conf.yml .aider.conf.yml
+
+# Auto-load context files
+read:
+  - AGENTS.md
+  - skills/lammps-simulation/SKILL.md
+  - skills/quantum-espresso/SKILL.md
+  - skills/hpc-cluster/SKILL.md
+  - skills/literature-search/SKILL.md
+  - skills/materials-database/SKILL.md
+  - skills/data-analysis/SKILL.md
+
+# Model settings (uncomment preferred model)
+# model: claude-3-5-sonnet
+# model: gpt-4o
+# model: deepseek/deepseek-coder
+
+# Edit format
+# edit-format: diff
+
+# Auto-commits (disable for benchmarking)
+auto-commits: false
+
+# Git settings
+# dirty-commits: true
+
+# Show diffs
+# show-diffs: true
+
+# Verbose output
+# verbose: false

@@ -1,0 +1,91 @@
+# =============================================================================
+# Agentic Science Worker - Configuration Template
+# =============================================================================
+#
+# Copy this file to config.yaml and fill in your values:
+#   cp config.example.yaml config.yaml
+#
+# Alternatively, set these as environment variables.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Simulation Binaries (Required for local execution)
+# -----------------------------------------------------------------------------
+binaries:
+  # LAMMPS molecular dynamics
+  # Install: https://docs.lammps.org/Install.html
+  # For GPU support, build with KOKKOS or GPU package
+  lammps: "/path/to/lammps/bin/lmp"
+
+  # Quantum ESPRESSO (optional, for DFT calculations)
+  # Install: https://www.quantum-espresso.org/
+  qe_cpu: "/path/to/qe/bin/pw.x"
+  qe_gpu: "/path/to/qe-gpu/bin/pw.x"  # Optional GPU build
+
+  # QE environment setup script (for GPU builds with NVHPC)
+  qe_env_script: "/path/to/qe/env/setup.sh"  # Optional
+
+# -----------------------------------------------------------------------------
+# API Keys (Required for database/literature access)
+# -----------------------------------------------------------------------------
+api_keys:
+  # Materials Project API key
+  # Get one at: https://materialsproject.org/api
+  materials_project: "YOUR_MP_API_KEY"
+
+  # Semantic Scholar API key (optional, for higher rate limits)
+  # Get one at: https://www.semanticscholar.org/product/api
+  semantic_scholar: "YOUR_S2_API_KEY"  # Optional
+
+# -----------------------------------------------------------------------------
+# HPC Configuration (Optional, for remote HPC execution)
+# -----------------------------------------------------------------------------
+hpc:
+  # Enable HPC features
+  enabled: false
+
+  # SSH connection details
+  host: "login.rc.colorado.edu"  # Or your HPC login node
+  user: "YOUR_USERNAME"
+
+  # SSH config alias (alternative to host/user)
+  # If set, uses `ssh <alias>` instead of `ssh user@host`
+  ssh_alias: "cu_alpine"  # Optional, matches ~/.ssh/config entry
+
+  # Default scratch directory on HPC
+  scratch_dir: "/scratch/alpine/$USER"
+
+  # Default partition for jobs
+  default_partition: "amilan"
+
+  # Default QoS (required on some clusters)
+  default_qos: "normal"
+
+# -----------------------------------------------------------------------------
+# ML/AI Models (Optional, for ML-powered simulations)
+# -----------------------------------------------------------------------------
+ml:
+  # Enable ML potentials (requires additional packages)
+  enabled: false
+
+  # Default device for ML inference
+  device: "cuda"  # or "cpu"
+
+  # Model cache directory
+  cache_dir: "~/.cache/matgl"
+
+# -----------------------------------------------------------------------------
+# Benchmark Settings
+# -----------------------------------------------------------------------------
+benchmarks:
+  # Default timeout for benchmarks (seconds)
+  default_timeout: 1800  # 30 minutes
+
+  # Maximum agent turns
+  max_turns: 50
+
+  # Results directory
+  results_dir: "./benchmarks/results/runs"
+
+  # Workspaces directory
+  workspaces_dir: "./workspaces/benchmarks"

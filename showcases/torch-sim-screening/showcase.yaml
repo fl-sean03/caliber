@@ -1,0 +1,51 @@
+# torch-sim High-Throughput Screening Showcase
+# Demonstrates agent using torch-sim for large-scale ML potential screening
+
+name: "torch-sim High-Throughput Screening"
+version: "1.0"
+created: "2026-01-23"
+
+organization:
+  name: "TorchSim / Radical AI"
+  repo: "https://github.com/TorchSim/torch-sim"
+  website: "https://radical-ai.com"
+
+description: |
+  This showcase demonstrates how the Agentic Science Worker can use torch-sim
+  for high-throughput materials screening at scale.
+
+  torch-sim provides:
+  - PyTorch-native atomistic simulation (100x faster than ASE)
+  - Automatic batching and GPU memory management
+  - Support for MACE, CHGNet, ORB, SevenNet, and more
+  - InFlightAutoBatcher for dynamic workload management
+
+  The agent uses torch-sim when screening many structures, achieving
+  throughput impossible with traditional ASE-based approaches.
+
+  Positioning: torch-sim as the performance option for large-scale work.
+
+category: "computational"
+
+requirements:
+  python_packages:
+    - torch-sim-atomistic>=0.5.0
+    - mace-torch  # or other ML potential
+  environment: []
+  hardware:
+    - GPU required for meaningful performance comparison
+
+tags:
+  - materials
+  - high-throughput
+  - ml-potentials
+  - screening
+  - performance
+
+references:
+  - title: "torch-sim GitHub Repository"
+    url: "https://github.com/TorchSim/torch-sim"
+  - title: "torch-sim Documentation"
+    url: "https://torchsim.github.io/torch-sim/"
+  - title: "Radical AI"
+    url: "https://radical-ai.com"
