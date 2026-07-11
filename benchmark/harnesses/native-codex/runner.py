@@ -28,8 +28,8 @@ from pathlib import Path
 HARNESS_NAME = "native-codex"
 
 
-def run(goal: str, *, workspace: str, model: str = "gpt-5.6",
-        effort: str = "xhigh", max_wall_s: int = 21600,
+def run(goal: str, *, workspace: str, model: str = "gpt-5.6-terra",
+        effort: str = "ultra", max_wall_s: int = 21600,
         sentinel: str = "TASK_DONE") -> dict:
     ws = Path(workspace)
     ws.mkdir(parents=True, exist_ok=True)
@@ -56,8 +56,9 @@ def run(goal: str, *, workspace: str, model: str = "gpt-5.6",
                               "config": config, "config_hash": config_hash,
                               "goal_sha": hashlib.sha256(goal.encode()).hexdigest()[:12]}) + "\n")
         out.flush()
-        proc = subprocess.Popen(argv, stdout=out, stderr=subprocess.STDOUT,
-                                text=True, start_new_session=True)
+        proc = subprocess.Popen(argv, stdin=subprocess.DEVNULL, stdout=out,
+                                stderr=subprocess.STDOUT, text=True,
+                                start_new_session=True)
         while True:
             rc = proc.poll()
             if rc is not None:
@@ -79,8 +80,8 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--goal-file", required=True)
     ap.add_argument("--workspace", required=True)
-    ap.add_argument("--model", default="gpt-5.6")
-    ap.add_argument("--effort", default="xhigh")
+    ap.add_argument("--model", default="gpt-5.6-terra")
+    ap.add_argument("--effort", default="ultra")
     ap.add_argument("--max-wall-s", type=int, default=21600)
     a = ap.parse_args()
     out = run(Path(a.goal_file).read_text(), workspace=a.workspace,

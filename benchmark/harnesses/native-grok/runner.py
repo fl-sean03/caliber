@@ -45,8 +45,9 @@ def run(goal: str, *, workspace: str, model: str = "grok-4.5",
                               "config": config, "config_hash": config_hash,
                               "goal_sha": hashlib.sha256(goal.encode()).hexdigest()[:12]}) + "\n")
         out.flush()
-        proc = subprocess.Popen(argv, stdout=out, stderr=subprocess.STDOUT,
-                                text=True, cwd=str(ws), start_new_session=True)
+        proc = subprocess.Popen(argv, stdin=subprocess.DEVNULL, stdout=out,
+                                stderr=subprocess.STDOUT, text=True, cwd=str(ws),
+                                start_new_session=True)
         while True:
             rc = proc.poll()
             if rc is not None:
