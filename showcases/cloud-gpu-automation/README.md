@@ -149,7 +149,7 @@ the run workspace BENCH-T17-001/
 ## Reproduce This Result
 
 ```bash
-cd /path/to/agentic-science-worker
+cd /path/to/caliber
 # historical v1 run id: BENCH-T17-001 (v1 suite retired; see caliber/)
 
 # Check for orphan instances after

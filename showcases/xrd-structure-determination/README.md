@@ -163,7 +163,7 @@ RESEARCH_REPORT.md                  # Full research report
 ## Reproduce This Result
 
 ```bash
-cd /path/to/agentic-science-worker
+cd /path/to/caliber
 # historical v1 run id: BENCH-T10-002 (v1 suite retired; see caliber/)
 ```
 

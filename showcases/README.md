@@ -3,7 +3,7 @@
 > These are real runs from the project's original evaluation suite (2026 H1),
 > preserved as capability demonstrations. The current benchmark is [Caliber](../benchmark/).
 
-Real examples of autonomous research conducted by the Caliber (then the Agentic Science Worker). Each showcase demonstrates end-to-end capability on a challenging scientific task.
+Real examples of autonomous research conducted by the agent (then named the Agentic Science Worker). Each showcase demonstrates end-to-end capability on a challenging scientific task.
 
 > **Note:** Showcases represent specific successful runs. Complex autonomous benchmarks show variability - the same benchmark may score differently on different runs. These showcases demonstrate what the agent CAN achieve.
 

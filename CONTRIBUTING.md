@@ -76,7 +76,7 @@ This isn't laziness—it's a deliberate architecture. Code scaffolding is brittl
 
 ```bash
 git clone https://github.com/fl-sean03/caliber.git
-cd agentic-science-worker
+cd caliber
 
 # Configure
 cp config.example.yaml config.yaml
@@ -118,7 +118,7 @@ python benchmark/suite/native_sweep.py --reps 3 --lanes 3
 │                       caliber/  (the benchmark)             │
 │  harnesses/  - per-model native runners (native-claude/...) │
 │  scoring/    - mechanical anchors ⊕ frozen judge, provenance │
-│  suite/      - versioned task generations + sweep/audit     │
+│  suite/      - task manifests + sweep/audit tooling         │
 │  METHODOLOGY.md - three axes, oracle-escrow, horizon        │
 └─────────────────────────────────────────────────────────────┘
         Sealed answer keys live OUTSIDE this repo (private store),
@@ -277,7 +277,7 @@ grading:
 
 Caliber grades autonomous materials-science agents on three axes (correctness gate ×
 pass^k × cost-efficiency). **Public methodology, private answers:** task prompts and
-reporting keys are public (`benchmark/suite/<generation>/MANIFEST.json`); the sealed
+reporting keys are public (`benchmark/suite/<name>/MANIFEST.json`); the sealed
 reference values, tolerances, and grading keys live in a separate private store and are
 never committed here.
 
@@ -296,7 +296,7 @@ and tolerance go to the private store.
    set to that reference's own uncertainty (never a global epsilon).
 3. **Grade observable outcomes, not methods.** Multiple valid approaches should pass.
 4. **Contamination-aware.** Prefer parameterized families instantiated fresh per
-   generation; never leak the answer through the prompt, reporting keys, or provided files.
+   fresh; never leak the answer through the prompt, reporting keys, or provided files.
 
 ### Contributing a harness or skill
 - **Harness** (new model/vendor): add `benchmark/harnesses/<name>/`; every run records

@@ -109,7 +109,7 @@ caliber/
 │   └── harnesses/       #   per-model native runners (native-claude/; more over time)
 ├── skills/              # ← THE CAPABILITY CORE (17 science skills the agents use)
 ├── AGENTS.md            #   the agent operating contract
-├── docs/  examples/  showcases/  configs/  environments/
+├── examples/  showcases/  configs/  environments/
 ```
 
 Sealed answers, tolerances, and the held-out set live in a **separate private repository**

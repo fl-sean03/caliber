@@ -849,7 +849,7 @@ This repo was rebased (Opus 4.8 → Fable 5) and closed out at the 2026-07-03
 fleet refresh. Before trusting any status claim in older docs:
 
 - **Benchmark:** Caliber is its own product under `caliber/` (public methodology,
-  private answers). No leaderboard numbers are published until a generation is frozen
+  private answers). No leaderboard numbers are published until Caliber-1 is frozen
   with pass^k + cost; see `benchmark/METHODOLOGY.md`.
 - **Predecessor conclusions are evidence, not authority.** Older docs carry
   supersession banners or divergence notes — verify against artifacts before
