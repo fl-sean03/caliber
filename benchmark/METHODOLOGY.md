@@ -101,6 +101,32 @@ funnel — launch below the frontier, keeping multi-year headroom — narrowed t
 - Sealing and rotation defend against *contamination*; the horizon axis is what defends
   against *capability-driven saturation* — both are required.
 
+### Environment sealing & trajectory audit (v1)
+
+Sealed answers protect the key; the trajectory audit protects the **path to the number** —
+it detects an agent *retrieving* a graded quantity (database query, literature lookup on
+the target system) instead of deriving it. Every task carries an **environment contract**
+(allowed tools, blocked-and-audited lookups) in its prompt and in the private task store;
+after each run, `suite/trajectory_audit.py` replays the transcript against that contract
+as data (the tool is pure mechanism — no task specifics are embedded in the public repo):
+
+1. **Tool-surface scan** — every tool call classified against the contract's
+   allowed/blocked lists plus a built-in retrieval taxonomy (web search/fetch, browser,
+   materials/chemistry databases, paper search).
+2. **Lookup-phrase scan** — contract-supplied target-system names and close analogues
+   matched over retrieval inputs *and* outputs, with context capture.
+3. **Numeric-proximity heuristic** — numbers in retrieval outputs inside a graded key's
+   window (suspicion only, never auto-void; locations reported redacted — sealed values
+   never appear in the audit report).
+4. **Provenance gap** — a reported graded value that never appears in any computation
+   tool's output "came from nowhere".
+
+Verdicts: **CLEAN** / **SUSPECT** (human adjudication) / **VIOLATION** (run **VOIDed** —
+distinct from FAIL, and audited runs feed back into task hardening). Vendor-native raw
+transcripts, where tool inputs and outputs cannot be separated, cap at SUSPECT — a run is
+never auto-voided on unstructured evidence. v2 hardening (per-task network egress
+allowlist, sanitized tool output) is planned post-launch.
+
 ## Difficulty calibration
 
 Candidate task families are screened against a frontier-model panel *before* scale
