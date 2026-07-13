@@ -17,7 +17,7 @@ jobs:
       - name: Install test deps
         run: pip install pytest requests
       - name: Run caliber tests
-        run: python -m pytest benchmark/scoring -q
+        run: python -m pytest benchmark/ -q
 
   hygiene:
     name: Leak & hygiene scan
@@ -32,4 +32,4 @@ jobs:
           ! git grep -nE "/home/sf[0-9]/" -- . ":!.github/workflows" || { echo "::error::machine-specific path found"; exit 1; }
       - name: Python syntax
         run: |
-          python -m compileall -q benchmark/ scripts/ || exit 1
+          python -m compileall -q benchmark/ || exit 1

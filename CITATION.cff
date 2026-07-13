@@ -2,21 +2,24 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 title: "Caliber-1: a benchmark for autonomous hard-science research agents"
 abstract: >-
-  A portable capability layer that turns a coding agent into an autonomous
-  computational-materials researcher, together with Caliber, a benchmark that
-  grades such agents on three axes (correctness gate, reliability pass^k, and
-  cost per correct solution) against sealed high-compute reference answers. The
-  agent plans methodology, sources parameters, runs and verifies DFT/MD/ML-
-  potential calculations, and executes long-horizon campaigns durably.
+  Caliber-1 is a benchmark for autonomous hard-science research agents
+  (chemistry, physics, materials). It grades agents on real research outcomes
+  across three axes (correctness gate, reliability pass^k, and cost per correct
+  solution) against sealed oracle-escrow references: high-compute ground truth
+  the grader computes at multiples of the agent's budget, with tolerances
+  derived from the reference's own uncertainty. Task validity is adversarially
+  screened against a frontier-model panel; graded runs are environment-sealed,
+  trajectory-audited against retrieval, and provenance-verified.
 type: software
 authors:
   - family-names: Florez
     given-names: Sean
-version: 0.3.0
-date-released: "2026-07-10"
+version: 0.2.0
+date-released: "2026-07-13"
 license: MIT
 repository-code: "https://github.com/fl-sean03/caliber"
 keywords:
+  - benchmark
   - agentic-ai
   - computational-materials-science
   - molecular-dynamics

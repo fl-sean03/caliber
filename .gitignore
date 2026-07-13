@@ -1,22 +1,11 @@
 # =============================================================================
-# Agentic Science Worker - .gitignore
+# Caliber - .gitignore
 # =============================================================================
 
 # -----------------------------------------------------------------------------
 # Internal/private documentation (not for public repo)
 # -----------------------------------------------------------------------------
 internal/
-
-# -----------------------------------------------------------------------------
-# Generated benchmark outputs (large, regenerable)
-# -----------------------------------------------------------------------------
-workspaces/benchmarks/
-benchmarks/results/runs/
-
-# Keep example workspaces and results
-!workspaces/examples/
-!benchmarks/results/examples/
-!benchmarks/results/BENCHMARK_RESULTS.md
 
 # -----------------------------------------------------------------------------
 # Python
@@ -66,10 +55,8 @@ env/
 .settings/
 
 # -----------------------------------------------------------------------------
-# Configuration with secrets (use .example templates)
+# Configuration with secrets (never commit)
 # -----------------------------------------------------------------------------
-.claude/settings.json
-.mcp.json
 config.yaml
 .env
 
@@ -122,25 +109,10 @@ log.lammps
 *.eam.fs
 *.tersoff
 *.UPF
-workspaces/phase0-tests/
-workspaces/projects/
-
-# Hide from public repo (owner rule, Jan 2026). rebase-2026-07-02 adjusted the
-# original `docs/` rule ONLY to let the rebase record set be tracked; nested
-# docs/ dirs (e.g. benchmarks/docs leftovers) stay ignored exactly as before.
-# Whether the rebase records stay tracked before any push is owner decision B-6.
-**/docs/
-!/docs/
-/docs/*
-!/docs/rebase/
-!/docs/PATH_MIGRATION_2026-06-13.md
-workspaces/copper_calc/
 
 # -----------------------------------------------------------------------------
 # Run artifacts / scratch (never commit)
 # -----------------------------------------------------------------------------
 *.pid
 pw.out
-*.tmp
-CRASH
 core.*

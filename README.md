@@ -2,7 +2,7 @@
 
 **The benchmark for autonomous hard-science research agents** — a small, curated set of brutal
 **chemistry, physics, and materials** commissions that today's best agents can't yet ace.
-Few tasks. Each one hard.
+Few tasks. Each one hard. Every grade verified.
 
 [![CI](https://github.com/fl-sean03/caliber/actions/workflows/ci.yml/badge.svg)](https://github.com/fl-sean03/caliber/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -10,18 +10,16 @@ Few tasks. Each one hard.
 [![Status](https://img.shields.io/badge/Caliber--1-in%20development-orange.svg)](#-status)
 [![Methodology](https://img.shields.io/badge/methodology-read-brightgreen.svg)](benchmark/METHODOLOGY.md)
 
-**Quick links:** [📋 The tasks](#-the-tasks) · [⚖️ How grading works](#-how-grading-works) · [🚦 Status](#-status) · [📖 Full methodology](benchmark/METHODOLOGY.md) · [🗺️ Repo map](#-repo-map)
+**Quick links:** [📋 The tasks](#-the-tasks) · [⚖️ How grading works](#-how-grading-works) · [🔬 Why trust a grade](#-why-trust-a-grade) · [🚦 Status](#-status) · [📖 Full methodology](benchmark/METHODOLOGY.md) · [🗺️ Repo map](#-repo-map)
 
 Caliber-1 grades agents on **real research outcomes** — converged DFT/MD calculations, verified
 physical properties, multi-stage campaigns, bounded discovery — not multiple-choice questions.
-It is deliberately **lean**: ~30 tasks (a hard **core of 10** plus breadth across the
-hard-science space), so you can measure a model with a handful of agent runs, not a fleet of a
-hundred. It is being built to **launch unsaturated** — Caliber-1 releases only once frontier
-models at maximum effort *can't* ace it.
-
-*(Includes the **capability core** — the `skills/` + `AGENTS.md` that turn a coding agent into
-an autonomous researcher; the system under test, developed in the open. Formerly the Agentic
-Science Worker.)*
+What makes it worth trusting is the **method**: ground truth is computed, not asserted;
+task validity is adversarially screened; graded runs are sealed and audited; and every score
+decomposes into correctness, reliability, and cost. It is deliberately **lean** (~30 tasks —
+a hard **core of 10** plus breadth across the hard-science space) and it is being built to
+**launch unsaturated**: Caliber-1 releases only once frontier models at maximum effort *can't*
+ace it.
 
 ---
 
@@ -75,15 +73,40 @@ flowchart LR
 2. **Reliability — pass^k** — the probability of passing **all** *k* independent reps.
 3. **Cost-efficiency** — dollars and tokens **per correct solution**.
 
-Ground truth is an **oracle-escrow reference the grader computes at 10–100× the agent's
-budget** — not experiment, not the agent's own numbers. → [Full methodology](benchmark/METHODOLOGY.md)
+Results will report more than pass rates: each model gets a **failure profile** — where on the
+difficulty horizon it breaks, *how* it fails (wrong method, unconverged calculation, silent
+unit error, gave up, blew the budget), and how that decomposes across domains. A benchmark
+this small can afford to diagnose, not just rank.
+
+## 🔬 Why trust a grade
+
+Caliber's claim to credibility is that every step between "agent run" and "score" is
+verifiable machinery, not judgment calls:
+
+- **Oracle-escrow ground truth.** The grader *computes* each reference answer at **10–100×
+  the agent's budget** (tighter convergence, denser sampling, quantified finite-size and
+  statistical error). Tolerances are derived from the **reference's own uncertainty** — never
+  a global epsilon, never an LLM's opinion, never the agent's own numbers.
+- **Adversarial task validation.** Every candidate task is screened against a panel of
+  frontier models at maximum effort before it can enter the suite. Tasks a model can ace are
+  discarded; tasks with ambiguous or unfair constructions are caught by cross-model
+  disagreement analysis and fixed or dropped.
+- **Environment sealing + trajectory audit.** Graded runs block lookups of the exact target;
+  every transcript is replayed against the task's environment contract
+  ([`benchmark/suite/trajectory_audit.py`](benchmark/suite/trajectory_audit.py)) to detect
+  *retrieving* a graded quantity instead of deriving it. Retrieval → VOID, distinct from FAIL.
+- **Provenance-verified runs.** Full trajectories (every tool call, per-turn cost), harness
+  identity (`harness:{name,version,config_hash}`), and a PROV-typed provenance graph are
+  captured for every run — a leaderboard entry is always traceable to exactly what produced it.
+- **Three-axis scoring.** Correctness gate × pass^k reliability × cost per correct solution —
+  no single-number scores that hide reliability collapse or ruinous cost.
 
 ## 🚦 Status
 
 **Caliber-1 is in active development — not yet released.** It ships only when it clears its
-**release gate**: the best frontier models (GPT-5.6, Fable 5, Grok 4.5) at maximum effort land
-**~15–40%** on the correctness gate, with clear separation between models and pass^k well below
-1 — *brutal but cracking*, with multi-year headroom.
+**release gate**: the best frontier models at maximum effort land **~15–40%** on the
+correctness gate, with clear separation between models and pass^k well below 1 — *brutal but
+cracking*, with multi-year headroom.
 
 Authoring follows the FrontierMath funnel: propose hard candidates → **screen against the
 frontier panel at max effort → keep only the tasks they can't ace** → iterate to a
@@ -100,16 +123,14 @@ The official leaderboard opens when Caliber-1 freezes → [benchmark/LEADERBOARD
 
 ```
 caliber/
-├── benchmark/           # ← THE BENCHMARK
-│   ├── METHODOLOGY.md   #   three axes · oracle-escrow grading · difficulty horizon · release gate
-│   ├── DEVELOPMENT.md   #   calibration results + the saturation finding that set the bar
-│   ├── LEADERBOARD.md   #   opens when Caliber-1 freezes
-│   ├── suite/           #   public task manifests (prompts + reporting keys) + sweep/audit tools
-│   ├── scoring/         #   mechanical anchors ⊕ frozen judge · evidence store · provenance graph
-│   └── harnesses/       #   per-model native runners (native-claude/; more over time)
-├── skills/              # ← THE CAPABILITY CORE (17 science skills the agents use)
-├── AGENTS.md            #   the agent operating contract
-├── examples/  showcases/  configs/  environments/
+└── benchmark/
+    ├── METHODOLOGY.md     # three axes · oracle-escrow grading · difficulty horizon · release gate
+    ├── DEVELOPMENT.md     # calibration results + the saturation finding that set the bar
+    ├── LEADERBOARD.md     # opens when Caliber-1 freezes
+    ├── TASK_VERSIONING.md # per-task N-X versions · frozen-suite comparability
+    ├── suite/             # public task manifests (prompts + reporting keys) + sweep/audit tools
+    ├── scoring/           # mechanical anchors ⊕ frozen judge · evidence store · provenance graph
+    └── harnesses/         # per-model native runners (native-claude / native-codex / native-grok)
 ```
 
 Sealed answers, tolerances, and the held-out set live in a **separate private repository**
@@ -119,31 +140,20 @@ Sealed answers, tolerances, and the held-out set live in a **separate private re
 
 ```bash
 git clone https://github.com/fl-sean03/caliber.git && cd caliber
-conda env create -f environments/science-tools.yml   # or: pip install pytest requests
+pip install pytest requests
 
 python -m pytest benchmark/scoring -q                       # verify the scoring engine
 python benchmark/suite/native_sweep.py --reps 3 --lanes 3   # sweep a model on its native harness
 python benchmark/suite/native_audit.py <run_dir> --brief    # audit a completed run
 ```
 
-To run the **agent** itself, point any supported coding agent (Claude Code, Aider, Cursor) at
-`AGENTS.md` and give it a research prompt.
-
 ## 🔒 Public methodology, private answers
 
 Everything about *how* Caliber grades is open; the sealed reference values, tolerances, grading
 keys, and a never-published held-out set live in a separate private repo, injected only at
 grade time. This is the standard contamination model (ARC-AGI, SWE-bench Pro): public tasks can
-be tuned against, the held-out set cannot, and every entrant — including our own agent — is
-scored through the same public submission path with the same Verified review.
-
-## The capability core (`skills/`)
-
-The agents Caliber grades are built from a portable capability layer: 17 self-contained
-**skills** (`skills/<name>/SKILL.md`) spanning simulation (LAMMPS, Quantum ESPRESSO, MLIPs),
-compute discipline, knowledge (literature, materials databases), and execution (cloud GPU, data
-analysis). An agent reads `AGENTS.md` and composes skills on demand. See
-[Showcases »](showcases/).
+be tuned against, the held-out set cannot, and every entrant is scored through the same public
+submission path with the same Verified review.
 
 ## Contributing
 

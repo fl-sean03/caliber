@@ -69,7 +69,8 @@ moves up as models improve, never a ceiling they saturate.
   discovery). Authored and iterated first.
 - **Breadth (20)** — comprehensive coverage of hard-science sub-areas, horizon **H4–H6**.
 
-There are no easy "warm-up" tasks in the release; saturated pilot tasks live in `examples/`.
+There are no easy "warm-up" tasks in the release; saturated pilot tasks are demoted to
+development evidence (`suite/dev-pilot/`, [DEVELOPMENT.md](DEVELOPMENT.md)).
 
 ## Release gate
 

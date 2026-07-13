@@ -27,7 +27,8 @@ import time
 from pathlib import Path
 
 HARNESS = Path(__file__).resolve().parents[1] / "harnesses" / "native-claude"
-PRIVATE = Path.home() / ".asw-suite-private"
+# Private store (sealed tasks/keys) — override with CALIBER_PRIVATE.
+PRIVATE = Path(os.environ.get("CALIBER_PRIVATE", str(Path.home() / ".caliber-private")))
 ACTIVE = Path.home() / ".agents" / "accounts" / ".active"
 
 # hardest-first (old-loop wall/cost ordering), then Band-B

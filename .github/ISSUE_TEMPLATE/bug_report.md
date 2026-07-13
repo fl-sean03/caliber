@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Report a problem with a skill, the harness, or a benchmark
+about: Report a problem with the scoring, a harness, or a benchmark task
 title: ''
 labels: bug
 assignees: ''
@@ -16,7 +16,7 @@ Steps or the exact prompt / command used.
 What you expected instead.
 
 **Environment**
-- Coding agent (Claude Code / Aider / Cursor) + version:
+- Harness (e.g. native-claude / native-codex / native-grok) + version:
 - OS / GPU:
 - Relevant tool versions (LAMMPS, Quantum ESPRESSO, Python):
 

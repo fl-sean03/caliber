@@ -23,16 +23,17 @@ concrete work is tracked in issues.
   lands ~15–40% on the correctness gate, with clear separation between models and pass^k
   well below 1.
 - **Leaderboard + submissions.** Frozen-suite entries only, full trajectories required,
-  Verified review flag from day one; our own agent submits through the same public path.
+  Verified review flag from day one; every entrant scored through the same public path.
 - **Reference results** published with the full three-axis profile (gate × pass^k × cost
   per correct solution) and an accuracy-vs-cost Pareto frontier.
+- **Per-model failure profiles.** Results report *how* each model fails — where on the
+  difficulty horizon it breaks, and whether the failure is method choice, convergence,
+  reliability collapse, or cost blow-up — not just pass rates.
 
 ## Beyond
 
 - **Environment sealing v2** — per-task network egress control and sanitized tool output.
 - **Per-task containerized environments** for bit-reproducible compute.
 - **Human expert baseline** for the hardest tier.
-- **Deeper durable execution** in the capability core — where reliability and cost, not
-  one-shot correctness, are the real frontier.
 
 Have a task family you'd like to see? Open an issue.

@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -18,7 +19,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scoring"))
 from grade_bandc_bridge import grade_bandC  # noqa: E402
 from judge_openai import OpenAIJudge  # noqa: E402
 
-PRIVATE = Path.home() / ".asw-suite-private"
+# Private store (sealed tasks/keys) — override with CALIBER_PRIVATE.
+PRIVATE = Path(os.environ.get("CALIBER_PRIVATE", str(Path.home() / ".caliber-private")))
 
 
 def harvest(ws: Path) -> tuple[dict, dict, float, float, int]:
