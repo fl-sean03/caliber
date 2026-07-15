@@ -31,6 +31,11 @@ HARNESS = Path(__file__).resolve().parents[1] / "harnesses" / "native-claude"
 PRIVATE = Path(os.environ.get("CALIBER_PRIVATE", str(Path.home() / ".caliber-private")))
 ACTIVE = Path.home() / ".agents" / "accounts" / ".active"
 
+# Fallback per-run wall when neither --max-wall-s nor the task manifest says
+# otherwise. Long-horizon tasks declare their own wall via wall_clock_h in the
+# manifest (30–96 h); a single global 6 h wall would DNF every honest run.
+DEFAULT_WALL_S = 21600
+
 # hardest-first (old-loop wall/cost ordering), then Band-B
 ORDER = ["BENCH-C-009", "BENCH-C-005", "BENCH-C-002", "BENCH-C-007",
          "BENCH-C-006", "BENCH-C-008", "BENCH-C-001", "BENCH-C-003",
@@ -85,6 +90,55 @@ def load_task(task_id: str) -> dict:
     return json.loads((PRIVATE / "tasks" / band / f"{task_id}.json").read_text())
 
 
+def manifest_wall_h(task: dict) -> tuple[float | None, str]:
+    """Extract wall_clock_h from a task manifest, tolerating shape drift.
+
+    Canonical home (all Caliber-1 task manifests, verified 2026-07-15) is
+    environment_contract.wall_clock_h; top-level and budget-nested spellings
+    are also accepted. Returns (hours, dotted_path) on success,
+    (None, dotted_path) when the field exists but is unusable, and
+    (None, "") when absent. First match in canonical-first order wins.
+    """
+    ec = task.get("environment_contract")
+    ec = ec if isinstance(ec, dict) else {}
+    ec_budget = ec.get("budget")
+    budget = task.get("budget")
+    spots = [
+        ("environment_contract.wall_clock_h", ec),
+        ("wall_clock_h", task),
+        ("environment_contract.budget.wall_clock_h",
+         ec_budget if isinstance(ec_budget, dict) else {}),
+        ("budget.wall_clock_h", budget if isinstance(budget, dict) else {}),
+    ]
+    for path, holder in spots:
+        if "wall_clock_h" not in holder:
+            continue
+        try:
+            hours = float(holder["wall_clock_h"])
+        except (TypeError, ValueError):
+            hours = float("nan")
+        if hours > 0:  # NaN and non-positive both fail this
+            return hours, path
+        return None, path
+    return None, ""
+
+
+def resolve_wall_s(cli_wall_s: int | None, task: dict) -> tuple[int, str]:
+    """Per-run wall in seconds + one-line reason.
+
+    Precedence: explicit --max-wall-s > manifest wall_clock_h*3600 >
+    DEFAULT_WALL_S (warn-and-default on missing/unparseable manifest field).
+    """
+    if cli_wall_s is not None:
+        return int(cli_wall_s), "cli --max-wall-s"
+    hours, path = manifest_wall_h(task)
+    if hours is not None:
+        return int(round(hours * 3600)), f"manifest {path}={hours:g}h"
+    if path:
+        return DEFAULT_WALL_S, f"default {DEFAULT_WALL_S}s (unparseable manifest {path})"
+    return DEFAULT_WALL_S, f"default {DEFAULT_WALL_S}s (no wall_clock_h in manifest)"
+
+
 def active_config_dir() -> str:
     acct = ACTIVE.read_text().strip() if ACTIVE.exists() else ""
     return str(Path.home() / ".agents" / "accounts" / acct) if acct else str(Path.home() / ".claude")
@@ -97,7 +151,9 @@ def main() -> int:
     ap.add_argument("--tree", default="native-fable5")
     ap.add_argument("--model", default="claude-fable-5")
     ap.add_argument("--tasks", default=None, help="comma list; default all 17")
-    ap.add_argument("--max-wall-s", type=int, default=21600)
+    ap.add_argument("--max-wall-s", type=int, default=None,
+                    help="override per-run wall (s); default: task manifest "
+                         f"wall_clock_h*3600, else {DEFAULT_WALL_S}")
     ap.add_argument("--dry", action="store_true")
     a = ap.parse_args()
 
@@ -158,15 +214,18 @@ def main() -> int:
             goal_f = rep_dir / "goal.txt"
             goal_f.write_text(build_goal(task, ws))
             cfg = active_config_dir()
+            wall_s, wall_why = resolve_wall_s(a.max_wall_s, task)
             proc = subprocess.Popen(
                 [sys.executable, str(HARNESS / "asw_native.py"),
                  "--goal-file", str(goal_f), "--workspace", str(ws),
                  "--model", a.model, "--config-dir", cfg,
-                 "--max-wall-s", str(a.max_wall_s)],
+                 "--max-wall-s", str(wall_s)],
                 stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True)
             running.append((proc, t, r, att, time.monotonic()))
             print(json.dumps({"event": "launch", "task": t, "rep": r,
-                              "attempt": att, "config_dir": cfg}), file=log, flush=True)
+                              "attempt": att, "config_dir": cfg,
+                              "max_wall_s": wall_s, "wall_source": wall_why}),
+                  file=log, flush=True)
         snapshot()
         time.sleep(10)
 
